@@ -8,13 +8,23 @@ public class LevelExit : MonoBehaviour
 	{
 		if(collision.CompareTag("Player"))
 		{
-			if(Player.Instance.hasSock)
+			if(Player.Instance.savedGnome)
 			{
 				Debug.Log("Victory!");
+				// Save sock data to GM
+				GameManager.Instance.socksStolen[GameManager.Instance.level - 1] = Player.Instance.hasSock;
+				if(GameManager.Instance.level == 4)
+				{
+					GameManager.Instance.LoadScene("Victory");
+				}
+				else
+				{
+					GameManager.Instance.LoadScene("Level" + (GameManager.Instance.level + 1));
+				}
 			}
 			else
 			{
-				Debug.Log("Player entered level exit without gnome :(");
+				Debug.Log("Player entered level exit without gnome, nothing happened :(");
 			}
 		}
 	}

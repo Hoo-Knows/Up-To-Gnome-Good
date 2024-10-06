@@ -8,7 +8,7 @@ public class Person : MonoBehaviour
     private FieldOfView _fov;
     private Vector3 _targetPos;
     private float _speed = 2.5f;
-    private float _targetDistance = 2f;
+    private float _targetDistance = 1f;
     private Coroutine _moveTowardsTargetCoro;
 
 	private void Start()

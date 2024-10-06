@@ -26,6 +26,7 @@ public class Gnome : MonoBehaviour
 		{
 			Debug.Log("Gnome saved!");
 			saved = true;
+			Player.Instance.savedGnome = true;
 			GetComponent<BoxCollider2D>().enabled = false;
 		}
 	}

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 	public string currentScene;
 	public bool isPaused;
+	public int level = 1;
+	public bool[] socksStolen = new bool[4];
 
 	private bool _canPressPause = true;
 	private bool _doingSceneTransition;
@@ -166,10 +168,17 @@ public class GameManager : MonoBehaviour
 	private IEnumerator LoadSceneCoro(string sceneName)
 	{
 		Debug.Log("Loading scene " + sceneName);
+		// Set level num
+		if(sceneName.Contains("Level"))
+		{
+			level = int.Parse(sceneName.Substring(5));
+		}
+
 		currentScene = sceneName;
 		isPaused = true;
 		yield return _sceneTransitionAnimator.PlayAndWait("FadeOut");
 		SceneManager.LoadScene(sceneName);
+		yield return new WaitForSeconds(0.25f);
 		yield return _sceneTransitionAnimator.PlayAndWait("FadeIn");
 		isPaused = false;
 		_canPressPause = true;
