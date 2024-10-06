@@ -5,9 +5,16 @@ using UnityEngine;
 public abstract class InteractableObject : MonoBehaviour
 {
 	protected bool _canInteract;
+	private GameObject _outline;
+
+	private void Start()
+	{
+		_outline = transform.Find("Outline").gameObject;
+	}
 
 	private void Update()
 	{
+		_outline.SetActive(_canInteract);
 		if(_canInteract && Input.GetKeyDown(KeyCode.Space))
 		{
 			OnInteract();

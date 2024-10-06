@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Throwable : MonoBehaviour
 {
-	private Vector2 origin;
     public Vector2 target;
+	public Sprite normal;
+	public Sprite broken;
 
-    private float _speed = 15f;
+	private Vector2 _origin;
+    private float _speed = 10f;
+    private float _rotSpeed = 720f;
 
 	private void Start()
 	{
-		origin = transform.position.ToVector2();
+		_origin = transform.position.ToVector2();
 		StartCoroutine(Throw());
 	}
 
@@ -20,11 +23,15 @@ public class Throwable : MonoBehaviour
 		while(Vector2.Distance(transform.position.ToVector2(), target) > 0.1f)
 		{
 			transform.position = Vector2.MoveTowards(transform.position, target, _speed * Time.fixedDeltaTime);
+			transform.rotation = Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + _rotSpeed * Time.fixedDeltaTime);
 			yield return null;
 		}
 		// Fall a little bit short so we don't get errors when raycasting to find the nearest person
-		Vector2 offset = (origin - target).normalized * 0.1f;
+		Vector2 offset = (_origin - target).normalized * 0.1f;
 		transform.position = target + offset;
+		transform.rotation = Quaternion.identity;
+		GetComponent<SpriteRenderer>().sprite = broken;
+
 		Debug.Log("Throwable landed at " + transform.position);
 		transform.FindClosestPersonInVision()?.Distract(target);
 	}

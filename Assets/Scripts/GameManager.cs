@@ -55,9 +55,6 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public float GetMusicVolume() => _musicSlider.value;
-	public float GetSFXVolume() => _sfxSlider.value;
-
 	public void Pause()
 	{
 		IEnumerator PauseCoro()
@@ -171,6 +168,11 @@ public class GameManager : MonoBehaviour
 		if(sceneName.Contains("Level"))
 		{
 			level = int.Parse(sceneName.Substring(5));
+		}
+		// Reset data when quitting to main menu
+		if(sceneName == "MainMenu")
+		{
+			socksStolen = new bool[4];
 		}
 
 		currentScene = sceneName;

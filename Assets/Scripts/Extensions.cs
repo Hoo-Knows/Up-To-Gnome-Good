@@ -27,7 +27,9 @@ public static class Extensions
 			// Raycast to check if the person has a line of sight
 			LayerMask layerMask = LayerMask.GetMask(new string[] { "Default", "NPC" });
 			RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, person.transform.position - transform.position, Mathf.Infinity, layerMask);
-			//Debug.Log(raycastHit.collider.gameObject);
+
+			Debug.DrawLine(transform.position, raycastHit.point, Color.red, 2f);
+
 			if(raycastHit.collider != null && raycastHit.collider.GetComponent<Person>() == person)
 			{
 				// Set closest if this is the first person to be found
@@ -45,7 +47,15 @@ public static class Extensions
 				}
 			}
 		}
-		Debug.Log("Closest person is " + closest.gameObject);
+		if(closest != null)
+		{
+			Debug.Log("Closest person is " + closest.gameObject);
+			Debug.DrawLine(transform.position, closest.transform.position, Color.green, 2f);
+		}
+		else
+		{
+			Debug.Log("No closest person found");
+		}
 		return closest;
 	}
 

@@ -15,10 +15,12 @@ public class Player : MonoBehaviour
 	[SerializeField] private GameObject _throwablePrefab;
 	private bool _aiming;
 	private float _speed = 5f;
-	private Rigidbody2D _rb;
 	private float _positionListTimer;
 	private float _positionListUpdateTime = 0.1f;
 	private int _maxPositionListLength = 100;
+	private Animator _animator;
+	private Rigidbody2D _rb;
+	private SpriteRenderer _sr;
 
 	private void Awake()
 	{
@@ -32,7 +34,9 @@ public class Player : MonoBehaviour
 
 	private void Start()
     {
+		_animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+		_sr = GetComponent<SpriteRenderer>();
     }
 
 	private bool FreezeMovement()
@@ -94,6 +98,19 @@ public class Player : MonoBehaviour
 		// Handle movement
 		Vector2 moveVector = GetMoveVector();
 		_rb.velocity = _speed * moveVector;
+
+		// Play animations
+		_animator.SetBool("Walking", moveVector.magnitude > 0f);
+
+		// Flip sprite if necessary
+		if(moveVector.x > 0f)
+		{
+			_sr.flipX = true;
+		}
+		if(moveVector.x < 0f)
+		{
+			_sr.flipX = false;
+		}
 
 		// Track movement for gnomes to follow
 		// Only track movement if player is moving
