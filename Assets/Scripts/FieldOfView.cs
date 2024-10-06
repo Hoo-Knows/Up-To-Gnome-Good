@@ -57,7 +57,7 @@ public class FieldOfView : MonoBehaviour
 				if(raycastHit.collider.CompareTag("Player"))
 				{
 					Player.Instance.caught = true;
-					LevelManager.Instance.RetryLevel(1f);
+					GameManager.Instance.LoadScene(GameManager.Instance.currentScene);
 				}
 				vertex = new Vector3(raycastHit.point.x, raycastHit.point.y) - transform.position;
 			}

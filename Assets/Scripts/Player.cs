@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
 	public static Player Instance;
 	public bool hasSock;
+	public bool savedGnome;
 	public bool caught;
 	public int throwables = 0;
+	public List<Vector2> positionList = new List<Vector2>();
 
 	[SerializeField] private GameObject _throwablePrefab;
 	private bool _aiming;
 	private float _speed = 5f;
 	private Rigidbody2D _rb;
+	private float _positionListTimer;
+	private float _positionListUpdateTime = 0.1f;
+	private int _maxPositionListLength = 100;
 
 	private void Awake()
 	{
@@ -31,7 +37,7 @@ public class Player : MonoBehaviour
 
 	private bool FreezeMovement()
 	{
-		return !LevelManager.Instance.finishedLoading || caught;
+		return GameManager.Instance.isPaused || caught;
 	}
 
     private Vector2 GetMoveVector()
@@ -61,10 +67,13 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
+		// Start/stop aiming
 		if(Input.GetKeyDown(KeyCode.Q))
 		{
 			_aiming = !_aiming;
 		}
+
+		// Throw object
 		if(_aiming && Input.GetMouseButtonDown(0) && throwables > 0)
 		{
 			// Spawn the throwable
@@ -81,6 +90,27 @@ public class Player : MonoBehaviour
 			throwables--;
 		}
 		transform.Find("Aim Sprite").gameObject.SetActive(_aiming && !caught);
-		_rb.velocity = _speed * GetMoveVector();
+
+		// Handle movement
+		Vector2 moveVector = GetMoveVector();
+		_rb.velocity = _speed * moveVector;
+
+		// Track movement for gnomes to follow
+		// Only track movement if player is moving
+		if(moveVector.magnitude > 0f)
+		{
+			_positionListTimer += Time.deltaTime;
+		}
+
+		// Update list every _positionListUpdateTime seconds
+		if(_positionListTimer > _positionListUpdateTime)
+		{
+			positionList.Add(transform.position.ToVector2());
+			while(positionList.Count > _maxPositionListLength)
+			{
+				positionList.RemoveAt(0);
+			}
+			_positionListTimer = 0f;
+		}
 	}
 }

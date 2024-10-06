@@ -9,6 +9,13 @@ public static class Extensions
 		return anim.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1f;
 	}
 
+	public static IEnumerator PlayAndWait(this Animator anim, string stateName)
+	{
+		anim.Play(stateName);
+		yield return null;
+		yield return new WaitWhile(() => anim.IsPlaying());
+	}
+
 	public static Person FindClosestPersonInVision(this Transform transform)
 	{
 		Person[] people = GameObject.FindObjectsOfType<Person>();

@@ -11,11 +11,10 @@ public class LevelExit : MonoBehaviour
 			if(Player.Instance.hasSock)
 			{
 				Debug.Log("Victory!");
-				LevelManager.Instance.LoadNextLevel(0f);
 			}
 			else
 			{
-				Debug.Log("Player entered level exit without victory conditions");
+				Debug.Log("Player entered level exit without gnome :(");
 			}
 		}
 	}
