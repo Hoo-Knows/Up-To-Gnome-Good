@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Person : MonoBehaviour
 {
+    public AudioClip alertSound;
+    public GameObject alert;
+
     private Rigidbody2D _rb;
     private FieldOfView _fov;
     private SpriteRenderer _sr;
@@ -37,12 +40,15 @@ public class Person : MonoBehaviour
     {
 		Debug.Log(gameObject.name + " distracted and moving towards " + _targetPos);
 
-		// Surprised notif
+        // Surprised notif
+        GameManager.Instance.PlaySFX(alertSound);
+        alert.SetActive(true);
 		_rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(1f);
+		alert.SetActive(false);
 
-        // Start moving, or at least turn towards it
-        do
+		// Start moving, or at least turn towards it
+		do
         {
             Vector3 moveVector = (_targetPos - transform.position).normalized;
             //Debug.Log(moveVector);

@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a180da30101b94cab978dc3be0f3d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwSound: {fileID: 8300000, guid: 3acea60c458fd8f4c9bab16b1123ca28, type: 3}
+  landSound: {fileID: 8300000, guid: a10c73589f001e4499dd14d464532542, type: 3}
   target: {x: 0, y: 0}
   normal: {fileID: 21300000, guid: c735ac8aa7cf6fd41ac471658e0f00a2, type: 3}
   broken: {fileID: 21300000, guid: 71e41a9cec906964eb41d6e52e7d6c0f, type: 3}

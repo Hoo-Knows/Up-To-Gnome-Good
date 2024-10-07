@@ -5,6 +5,7 @@ using UnityEngine;
 public class FieldOfView : MonoBehaviour
 {
 	public float angle;
+	public AudioClip caughtSound;
 
 	[SerializeField] private float fov;
 	[SerializeField] private int rayCount = 50;
@@ -56,8 +57,19 @@ public class FieldOfView : MonoBehaviour
 			{
 				if(raycastHit.collider.CompareTag("Player"))
 				{
-					Player.Instance.caught = true;
-					GameManager.Instance.LoadScene(GameManager.Instance.currentScene);
+					if(!Player.Instance.caught)
+					{
+						Player.Instance.caught = true;
+						transform.parent.GetComponent<Person>().alert.SetActive(true);
+						GameManager.Instance.PlaySFX(caughtSound);
+
+						IEnumerator LoadSceneDelay()
+						{
+							yield return new WaitForSeconds(1f);
+							GameManager.Instance.LoadScene(GameManager.Instance.currentScene);
+						}
+						StartCoroutine(LoadSceneDelay());
+					}
 				}
 				vertex = new Vector3(raycastHit.point.x, raycastHit.point.y) - transform.position;
 			}

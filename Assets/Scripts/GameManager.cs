@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,13 +16,15 @@ public class GameManager : MonoBehaviour
 
 	private bool _canPressPause = true;
 	private bool _doingSceneTransition;
-	
+
+	[SerializeField] private AudioMixer _mixer;
 	[SerializeField] private Animator _sceneTransitionAnimator;
 	[SerializeField] private Animator _menuAnimator;
 	[SerializeField] private GameObject _pauseMenu;
 	[SerializeField] private GameObject _optionsMenu;
 	[SerializeField] private Slider _musicSlider;
 	[SerializeField] private Slider _sfxSlider;
+	[SerializeField] private AudioSource _sfxSource;
 
 	private void Awake()
 	{
@@ -54,6 +57,21 @@ public class GameManager : MonoBehaviour
 				Resume();
 			}
 		}
+	}
+
+	public void PlaySFX(AudioClip clip)
+	{
+		_sfxSource.PlayOneShot(clip);
+	}
+
+	public void SetMusicVolume(float volume)
+	{
+		_mixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20f);
+	}
+
+	public void SetSFXVolume(float volume)
+	{
+		_mixer.SetFloat("sfxVolume", Mathf.Log10(volume) * 20f);
 	}
 
 	public void Pause()

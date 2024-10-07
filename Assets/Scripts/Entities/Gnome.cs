@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gnome : MonoBehaviour
 {
     public bool saved;
+	public AudioClip savedSound;
 
     // Same speed as player
     private float _speed = 5f;
@@ -52,6 +53,7 @@ public class Gnome : MonoBehaviour
 			saved = true;
 			Player.Instance.savedGnome = true;
 			GetComponent<BoxCollider2D>().enabled = false;
+			GameManager.Instance.PlaySFX(savedSound);
 		}
 	}
 }

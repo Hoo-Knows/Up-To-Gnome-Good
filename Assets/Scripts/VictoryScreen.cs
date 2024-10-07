@@ -2,19 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VictoryScreen : MonoBehaviour
 {
 	public TMP_Text statsText;
+	public GameObject socks;
+	public Image stage;
 
-	private void Start()
+	private int _sockCounter;
+	private float _hue;
+
+	private void Awake()
 	{
-		int sockCounter = 0;
-		foreach(bool sockStolen in GameManager.Instance.socksStolen)
+		_sockCounter = 0;
+		for(int i = 0; i < GameManager.Instance.socksStolen.Length; i++)
 		{
-			if(sockStolen) sockCounter++;
+			if(GameManager.Instance.socksStolen[i]) _sockCounter++;
+			socks.transform.GetChild(i).gameObject.SetActive(GameManager.Instance.socksStolen[i]);
 		}
-		statsText.text = string.Format("You saved your friends and helped steal {0} socks", sockCounter);
+		statsText.text = string.Format("You saved your friends and stole {0} {1}", _sockCounter, _sockCounter == 1 ? "sock" : "socks");
+
+		// Dance if you got a sock
+		if(_sockCounter > 0)
+		{
+			StartCoroutine(GnomeDance());
+		}
+		else
+		{
+			foreach(Animator animator in GetComponentsInChildren<Animator>())
+			{
+				Destroy(animator);
+			}
+		}
+	}
+
+	private IEnumerator GnomeDance()
+	{
+		while(isActiveAndEnabled)
+		{
+			yield return new WaitForSeconds(1f);
+			foreach(Animator animator in GetComponentsInChildren<Animator>())
+			{
+				RectTransform rectTransform = animator.GetComponent<RectTransform>();
+				Vector3 scale = rectTransform.localScale;
+				rectTransform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+			}
+		}
+	}
+
+	private void Update()
+	{
+		if(_sockCounter >= 3)
+		{
+			_hue += Time.deltaTime * 0.25f;
+			_hue = _hue % 1;
+			stage.color = Color.HSVToRGB(_hue, 0.7f, 0.6f);
+		}
 	}
 
 	public void MainMenu()

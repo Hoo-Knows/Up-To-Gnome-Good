@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelExit : MonoBehaviour
 {
+	public AudioClip winSound;
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if(collision.CompareTag("Player"))
@@ -11,6 +13,7 @@ public class LevelExit : MonoBehaviour
 			if(Player.Instance.savedGnome)
 			{
 				Debug.Log("Victory!");
+				GameManager.Instance.PlaySFX(winSound);
 				// Save sock data to GM
 				GameManager.Instance.socksStolen[GameManager.Instance.level - 1] = Player.Instance.hasSock;
 				if(GameManager.Instance.level == 4)

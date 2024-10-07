@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Distraction : InteractableObject
 {
+	public AudioClip distractionSound;
+
 	protected override void OnInteract()
 	{
-		// Play a sound
 		Debug.Log("Distracting closest person");
 		transform.FindClosestPersonInVision()?.Distract(transform.position);
+		GameManager.Instance.PlaySFX(distractionSound);
 	}
 }

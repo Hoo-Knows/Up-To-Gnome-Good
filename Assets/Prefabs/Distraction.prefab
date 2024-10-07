@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542fc80bf034eaf419ca201259d1b62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distractionSound: {fileID: 8300000, guid: e9b744b7c781234449d12c404616a28a, type: 3}
 --- !u!61 &1514827173466900476
 BoxCollider2D:
   m_ObjectHideFlags: 0

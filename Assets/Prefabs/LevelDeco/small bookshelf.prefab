@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1793863276548796434}
   - component: {fileID: 225574415178313667}
-  - component: {fileID: 8638702574479517558}
   - component: {fileID: 5189885439977513787}
+  - component: {fileID: 7977634372297917924}
   m_Layer: 0
   m_Name: small bookshelf
   m_TagString: Untagged
@@ -86,18 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8638702574479517558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5765632384702544553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6ff9f9f84898314fa70c9ca4d2f484c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &5189885439977513787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.703125, y: 1.875}
   m_EdgeRadius: 0
+--- !u!114 &7977634372297917924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5765632384702544553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ff9f9f84898314fa70c9ca4d2f484c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

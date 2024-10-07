@@ -788,6 +788,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 27512969744955347, guid: a9058691cd73040439969d4c45d2edc6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 861148213695887608, guid: a9058691cd73040439969d4c45d2edc6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.671875
@@ -1325,6 +1329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sock
       objectReference: {fileID: 0}
+    - target: {fileID: 4142414084290654002, guid: 243d9dff309df63458fca5e70fea8059, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8666265128520593975, guid: 243d9dff309df63458fca5e70fea8059, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.484375
@@ -1540,6 +1548,10 @@ PrefabInstance:
     - target: {fileID: 385913281829832035, guid: bb3a5f0aad90c7c4eab27f1476be6426, type: 3}
       propertyPath: m_Name
       value: OldGnome
+      objectReference: {fileID: 0}
+    - target: {fileID: 385913281829832035, guid: bb3a5f0aad90c7c4eab27f1476be6426, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5902132788308520934, guid: bb3a5f0aad90c7c4eab27f1476be6426, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1935,6 +1947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Witch
       objectReference: {fileID: 0}
+    - target: {fileID: 7602658921346738894, guid: 0cf2d4f79fa446749b0b60ae3d31c868, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2138,6 +2154,10 @@ PrefabInstance:
     - target: {fileID: 8416219624165115645, guid: 05f6a1232b1fb1640830b274dfa2eb65, type: 3}
       propertyPath: m_Name
       value: Distraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416219624165115645, guid: 05f6a1232b1fb1640830b274dfa2eb65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2384,6 +2404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70188cc956de07e4ca617cba4e91c4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winSound: {fileID: 8300000, guid: 24451790c5eab8c4985cca59228d33cf, type: 3}
 --- !u!1001 &8735318216691736335
 PrefabInstance:
   m_ObjectHideFlags: 0

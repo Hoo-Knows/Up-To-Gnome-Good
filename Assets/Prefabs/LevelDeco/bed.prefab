@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5997665028566308989}
   - component: {fileID: 4325819782834646869}
   - component: {fileID: 5973127113753677031}
-  - component: {fileID: 8812668695255213735}
   m_Layer: 0
   m_Name: bed
   m_TagString: Untagged
@@ -133,15 +132,3 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &8812668695255213735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2640144072580537147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6ff9f9f84898314fa70c9ca4d2f484c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
