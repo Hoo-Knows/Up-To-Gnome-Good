@@ -10,6 +10,7 @@ public class Person : MonoBehaviour
     private Rigidbody2D _rb;
     private FieldOfView _fov;
     private SpriteRenderer _sr;
+    private Animator _animator;
 
     private Vector3 _targetPos;
     private float _speed = 2.5f;
@@ -21,8 +22,10 @@ public class Person : MonoBehaviour
 		_rb = GetComponent<Rigidbody2D>();
         _fov = GetComponentInChildren<FieldOfView>();
         _sr = GetComponent<SpriteRenderer>();
+		_animator = GetComponent<Animator>();
 
-        _sr.flipX = FlipX();
+
+		_sr.flipX = FlipX();
 	}
 
 	public void Distract(Vector3 pos)
@@ -47,6 +50,9 @@ public class Person : MonoBehaviour
         yield return new WaitForSeconds(1f);
 		alert.SetActive(false);
 
+		// Play animation
+		_animator.SetBool("Walking", true);
+
 		// Start moving, or at least turn towards it
 		do
         {
@@ -68,6 +74,9 @@ public class Person : MonoBehaviour
 
 		// Stop moving
 		_rb.velocity = Vector2.zero;
+
+		// Stop animation
+		_animator.SetBool("Walking", false);
 	}
 
     private bool FlipX()
