@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	public bool isPaused;
 	public int level = 1;
 	public bool[] socksStolen = new bool[4];
+	public bool showedTutorial;
 
 	private bool _canPressPause = true;
 	private bool _doingSceneTransition;

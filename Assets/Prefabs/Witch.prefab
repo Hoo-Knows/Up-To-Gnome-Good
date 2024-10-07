@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 3503226714575903304}
   - component: {fileID: 6806376362856592393}
   m_Layer: 7
-  m_Name: Person
+  m_Name: Witch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 	private float _speed = 5f;
 	private float _positionListTimer;
 	private float _positionListUpdateTime = 0.1f;
-	private int _maxPositionListLength = 100;
+	private int _maxPositionListLength = 10;
 	private Animator _animator;
 	private Rigidbody2D _rb;
 	private SpriteRenderer _sr;

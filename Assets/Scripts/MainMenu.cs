@@ -6,7 +6,14 @@ public class MainMenu : MonoBehaviour
 {
 	public void Play()
 	{
-		GameManager.Instance.LoadScene("Level1");
+		if(GameManager.Instance.showedTutorial)
+		{
+			GameManager.Instance.LoadScene("Level1");
+		}
+		else
+		{
+			GameManager.Instance.LoadScene("Tutorial");
+		}
 	}
 
 	public void Options()
