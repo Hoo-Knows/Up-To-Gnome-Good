@@ -21,7 +21,18 @@ public class VictoryScreen : MonoBehaviour
 			if(GameManager.Instance.socksStolen[i]) _sockCounter++;
 			socks.transform.GetChild(i).gameObject.SetActive(GameManager.Instance.socksStolen[i]);
 		}
-		statsText.text = string.Format("You saved your friends and stole {0} {1}", _sockCounter, _sockCounter == 1 ? "sock" : "socks");
+		if(_sockCounter == 0)
+		{
+			statsText.text = "You saved your friends, but didn't get any socks";
+		}
+		else if(_sockCounter > 0 && _sockCounter < 4)
+		{
+			statsText.text = string.Format("You saved your friends and stole {0} {1}", _sockCounter, _sockCounter == 1 ? "sock" : "socks");
+		}
+        else if(_sockCounter == 4)
+        {
+			statsText.text = "You saved your friends and stole all the socks!";
+		}
 
 		// Dance if you got a sock
 		if(_sockCounter > 0)

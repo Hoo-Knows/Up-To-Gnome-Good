@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+	public static Rect canvasRect;
+
 	[SerializeField] private GameObject[] gnomePrefabs;
 	private int _gnomeIndex;
 	private float _gnomeSpawnTime = 1.5f;
 	private float _timer;
+
+	private void Start()
+	{
+		canvasRect = GameObject.Find("Main Camera").transform.Find("Canvas").GetComponent<RectTransform>().rect;
+	}
 
 	private void Update()
 	{
@@ -16,7 +23,8 @@ public class MainMenu : MonoBehaviour
 		{
 			GameObject gnome = Instantiate(gnomePrefabs[_gnomeIndex], transform);
 			// Generates either -1f or 1f
-			gnome.AddComponent<MainMenuGnomes>().moveDirection = 2f * Random.Range(0, 2) - 1f;
+			//gnome.AddComponent<MainMenuGnomes>().moveDirection = 2f * Random.Range(0, 2) - 1f;
+			gnome.AddComponent<MainMenuGnomes>().moveDirection = 1f;
 
 			_gnomeIndex++;
 			if(_gnomeIndex >= gnomePrefabs.Length) _gnomeIndex = 0;

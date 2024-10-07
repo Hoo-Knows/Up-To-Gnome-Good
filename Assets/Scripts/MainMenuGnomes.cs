@@ -17,7 +17,9 @@ public class MainMenuGnomes : MonoBehaviour
 		_rectTransform.localScale = new Vector3(-1f * moveDirection * localScale.x, localScale.y, localScale.z);
 
 		// Set position
-		_rectTransform.position = new Vector3(1000f - 1000f * moveDirection, Random.Range(200f, 1080f), 0f);
+		float x = MainMenu.canvasRect.width / 2f * (1f - moveDirection) - moveDirection * 100f;
+		float y = Random.Range(200f, MainMenu.canvasRect.height - 200f);
+		_rectTransform.position = new Vector3(x, y, 0f);
 
 		// Set move vector
 		_moveVector = new Vector3(Random.Range(600f, 1000f) * moveDirection, 0f, 0f);
